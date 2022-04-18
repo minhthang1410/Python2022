@@ -1,0 +1,3 @@
+Hello Word
+
+Test mailing client with Python
