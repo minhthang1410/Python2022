@@ -1,4 +1,3 @@
-from email import message
 import threading
 import socket
 
@@ -15,11 +14,13 @@ server.listen()
 clients = []
 nicknames = []
 
+
 # Sending Messages To All Connected Clients
 def broadcast(message):
     for client in clients:
         client.send(message)
-        
+
+
 # Handling Messages From Clients
 def handle(client):
     while True:
@@ -36,7 +37,8 @@ def handle(client):
             broadcast('{} left!'.format(nickname).encode('ascii'))
             nicknames.remove(nickname)
             break
-        
+
+
 # Receiving / Listening Function
 def receive():
     while True:
@@ -58,5 +60,7 @@ def receive():
         # Start Handling Thread For Client
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
-        
+
+
+print("Server is listening !")
 receive()
